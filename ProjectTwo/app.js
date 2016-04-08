@@ -9,8 +9,17 @@ app.use(function (req, res) {
 });
 //设置socket.io
 var io = require('socket.io').listen(app.listen(port));
-io.sockets.on('connection', function (socket) {
-    socket.emit('connected');
+
+//存放信息的数组
+var messages = [];
+io.sockets.on('connection',function (socket) {
+    socket.on('messages.read',function () {
+        socket.emit('messages.read',messages);
+    });
+    socket.on('messages.create',function (message) {
+        messages.push(message);
+        io.sockets.emit('messages.add',message);
+    })
 });
 
 console.log('ProjectTwo is on Port ' + port + '!');
