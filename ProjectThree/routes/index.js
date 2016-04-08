@@ -7,5 +7,5 @@ module.exports = function (app) {
     });
     app.get('/yu',function (req, res) {
         res.send("hello world");
-    })
+    });
 };
