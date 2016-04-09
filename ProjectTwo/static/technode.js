@@ -75,7 +75,7 @@ angular.module('techNodeApp').directive('ctrlEnterBreakLine', function () {
                 }, 1000);
             }
             if (event.which === 13) {
-                if (ctrlDown) {
+                if (ctrlxDown) {
                     element.val(element.val() + '\n');
                 } else {
                     scope.$apply(function () {
