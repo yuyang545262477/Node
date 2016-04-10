@@ -7,7 +7,7 @@ angular.module("techNodeApp").factory('socket', function ($rootScope) {
         on: function (eventName, callback) {
             socket.on(eventName, function () {
                 var args = arguments;
-                $rootScope.apply(function () {
+                $rootScope.$apply(function () {
                     callback.apply(socket, args);
                 });
             })
@@ -34,7 +34,7 @@ angular.module('techNodeApp').controller('RoomCtrl', function ($scope, socket) {
     socket.on('messages.add', function (message) {
         $scope.messages.push(message);
     });
-    socket.emit('message.read');
+    socket.emit('messages.read');
 });
 
 
@@ -75,7 +75,7 @@ angular.module('techNodeApp').directive('ctrlEnterBreakLine', function () {
                 }, 1000);
             }
             if (event.which === 13) {
-                if (ctrlxDown) {
+                if (ctrlDown) {
                     element.val(element.val() + '\n');
                 } else {
                     scope.$apply(function () {

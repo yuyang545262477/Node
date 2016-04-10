@@ -12,15 +12,15 @@ var io = require('socket.io').listen(app.listen(port));
 
 //存放信息的数组
 var messages = [];
-io.sockets.on('connection',function (socket) {
-    socket.on('messages.read',function () {
-        socket.emit('messages.read',messages);
+io.sockets.on('connection', function (socket) {
+    socket.on('messages.read', function () {
+        socket.emit('messages.read', messages);
     });
-    socket.on('messages.create',function (message) {
+    socket.on('messages.create', function (message) {
         messages.push(message);
-        io.sockets.emit('messages.add',message);
+        io.sockets.emit('messages.add', message);
     })
 });
 
-console.log('Angular&ExpressChatRoom is on Port ' + port + '!');
+console.log('ChatRoom is on Port ' + port + '!');
 
