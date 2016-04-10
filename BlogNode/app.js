@@ -22,7 +22,6 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 routes(app);
-console.log("测试 是否....");
 app.listen(app.get('port'), function () {
     console.log("Express server listening on port", app.get('port'));
 });

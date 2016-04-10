@@ -10,11 +10,11 @@ module.exports = function (app) {
         res.render('reg', {title: '注册'});
     });
     app.post('/reg', function (req, res) {
-        
+       
     });
     //登录页面
     app.get('/login', function (req, res) {
-        res.render('reg', {title: '登录'});
+        res.render('login', {title: '登录'});
     });
     app.post('/login', function (req, res) {
 
