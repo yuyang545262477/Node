@@ -8,6 +8,7 @@ var bodyParser = require("body-parser");
 //路由
 var routes = require('./routes/index');
 var settings = require('./settings');
+var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
@@ -27,6 +28,8 @@ var app = express();
 // app.set('port', process.env.PORT || 3000);//设置端口
 app.set('views', path.join(__dirname, 'views'));//设置视图
 app.set('view engine', 'ejs');//设置视图模板
+app.use(flash());
+
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
