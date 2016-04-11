@@ -8,6 +8,19 @@ var bodyParser = require("body-parser");
 //路由
 var routes = require('./routes/index');
 var settings = require('./settings');
+var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
+
+app.use(session({
+    secret: settings.cookieSecret,
+    ket: settings.db,
+    cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30days
+    store: new MongoStore({
+        db: settings.db,
+        host: settings.host,
+        port: settings.port
+    })
+}));
 
 var app = express();
 
