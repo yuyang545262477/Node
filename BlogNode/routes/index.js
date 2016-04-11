@@ -40,13 +40,13 @@ module.exports = function (app) {
         });
         //    通过检测,就增加新用户
         newUser.save(function (err, user) {
-            if (err){
-                req.flash('error',err);
+            if (err) {
+                req.flash('error', err);
                 return res.redirect('/reg');
             }
             req.session.user = newUser;
-            req.flash('success','注册成功');
-            res.redirect('/reg');
+            req.flash('success', '注册成功');
+            res.redirect('/');
         })
 
     });

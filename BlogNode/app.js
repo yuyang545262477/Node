@@ -12,25 +12,26 @@ var flash = require('connect-flash');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 
+var app = express();
+
 app.use(session({
     secret: settings.cookieSecret,
     ket: settings.db,
     cookie: {maxAge: 1000 * 60 * 60 * 24 * 30},//30days
     store: new MongoStore({
-        db: settings.db,
-        host: settings.host,
-        port: settings.port
+        // db: settings.db,
+        // host: settings.host,
+        // port: settings.port
+        url: 'mongodb://localhost/blog'
     })
 }));
-
-var app = express();
 
 // app.set('port', process.env.PORT || 3000);//设置端口
 app.set('views', path.join(__dirname, 'views'));//设置视图
 app.set('view engine', 'ejs');//设置视图模板
 app.use(flash());
 
-    
+
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
