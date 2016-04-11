@@ -30,7 +30,7 @@ app.set('views', path.join(__dirname, 'views'));//设置视图
 app.set('view engine', 'ejs');//设置视图模板
 app.use(flash());
 
-
+    
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
