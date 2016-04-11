@@ -7,6 +7,7 @@ var bodyParser = require("body-parser");
 
 //路由
 var routes = require('./routes/index');
+var settings = require('./settings');
 
 var app = express();
 
