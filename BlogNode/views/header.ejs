@@ -11,9 +11,24 @@
 </header>
 
 <nav>
-    <span><a href="/" title="主页">主页</a></span>
+    <span><a href="/" title="主页">Home</a></span>
+    <% if (user){ %>
+    <span><a href="/post" title="发表">Post</a></span>
+    <span><a href="/logout" title="登出">logout</a></span>
+    <% }else{ %>
     <span><a href="/login" title="登录">登录</a></span>
     <span><a href="/reg" title="注册">注册</a></span>
+    <% } %>
 </nav>
 
+
 <article>
+    <% if (success) { %>
+    <div><%= success %></div>
+    <p>少年你成功了</p>
+    <% } %>
+    <% if (error) { %>
+    <div><%= error %> </div>
+    <p>少年,你失败了</p>
+    <% } %>
+</article>
