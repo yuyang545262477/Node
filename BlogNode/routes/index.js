@@ -106,7 +106,12 @@ module.exports = function (app) {
     //博文
     app.get('/post', checkLogin);
     app.get('/post', function (req, res) {
-        res.render("post", {title: '发表'})
+        res.render("post", {
+            title: '发表',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
     });
     app.post('/post', checkLogin);
     app.post('/post', function (req, res) {
