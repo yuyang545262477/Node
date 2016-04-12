@@ -102,7 +102,9 @@ module.exports = function (app) {
 
 //    登出.
     app.get('/logout', function (req, res) {
-
+        req.session.user = null;
+        req.flash('success',"登出成功");
+        res.redirect('/');
     });
 
 };
