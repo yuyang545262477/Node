@@ -1,16 +1,23 @@
 var crypto = require('crypto'),
+    Post = require('../models/post'),
     User = require('../models/user');
 
 
 module.exports = function (app) {
     //首页
     app.get('/', function (req, res) {
-        res.render('index', {
-            title: '主页',
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
-        });
+        Post.get(null, function (err, posts) {
+            if (err) {
+                posts = [];
+            }
+            res.render('index', {
+                title: '主页',
+                user: req.session.user,
+                posts: posts,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            })
+        })
     });
 
 
@@ -103,7 +110,16 @@ module.exports = function (app) {
     });
     app.post('/post', checkLogin);
     app.post('/post', function (req, res) {
-
+        var CurrentUser = req.session.user,
+            post = new Post(CurrentUser.name, req.body.title, req.body.post);
+        post.save(function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            req.flash('success', '发布成功!');
+            res.redirect('/');
+        });
     });
 
 //    登出.
