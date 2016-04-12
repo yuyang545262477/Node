@@ -13,8 +13,8 @@
 <nav>
     <span><a href="/" title="主页">Home</a></span>
     <% if (user){ %>
-    <span><a href="/post" title="发表">Post</a></span>
-    <span><a href="/logout" title="登出">logout</a></span>
+    <span><a href="/post" title="发表">发表</a></span>
+    <span><a href="/logout" title="登出">登出</a></span>
     <% }else{ %>
     <span><a href="/login" title="登录">登录</a></span>
     <span><a href="/reg" title="注册">注册</a></span>
@@ -28,6 +28,5 @@
     <% } %>
     <% if (error) { %>
     <div><%= error %> </div>
-    <p>少年,你失败了</p>
     <% } %>
 </article>
